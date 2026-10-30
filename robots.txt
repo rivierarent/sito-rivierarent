@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /classico/
+Disallow: /anteprime/
+Disallow: /cartellone/
+Disallow: /offerte-mondiali/
+
+Sitemap: https://rivierarent.it/sitemap.xml

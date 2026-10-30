@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riviera Rent Luxury – Ville e case di lusso in Liguria</title>
+  <meta name="description" content="Case vacanza selezionate in Liguria e gestione completa degli affitti brevi per proprietari. Riviera Rent, da oltre vent'anni.">
+  <link rel="canonical" href="https://rivierarent.it/lusso/">
+  <meta name="theme-color" content="#ede6da">
+  <link rel="icon" href="/assets/img/logo-lusso-azzurro.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/lusso/v3.css">
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <div class="announce"><a class="announce-back" href="/">← Riviera Rent</a>Collezione Lusso <span>·</span> Liguria</div>
+  <header class="site-header">
+    <div class="container bar">
+      <nav id="nav" aria-label="Menu principale">
+        <a href="#collezione">La collezione</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#gestione">Proprietari</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <a class="logo with-mark" href="/lusso/" aria-label="Riviera Rent – home"><img class="logo-img" src="/assets/img/logo-lusso-azzurro.svg" alt=""><span class="logo-text">Riviera Rent<small class="lux-tag">Luxury</small></span></a>
+      <div class="bar-right">
+        <a class="text-link hide-sm" data-c="whatsapp" data-where="header" target="_blank" rel="noopener" href="#">WhatsApp</a>
+        <a class="btn btn-solid" data-c="booking" data-where="header" target="_blank" rel="noopener" href="#">Prenota</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- APERTURA: DUE SERVIZI -->
+    <section class="split" aria-label="Scegli il servizio">
+      <h1 class="sr-only">Riviera Rent: case vacanza in Liguria e gestione affitti brevi per proprietari</h1>
+      <a class="panel-choice rent" href="#collezione" data-where="split_rent">
+        <img class="photo" src="/assets/img/affitta.jpg" alt="" onerror="this.remove()">
+        <span class="frame" aria-hidden="true"></span>
+        <span class="choice-inner">
+          <span class="label">I · Per chi viaggia</span>
+          <span class="choice-title">Affitta una<br><em>casa vacanza</em></span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="choice-text">Appartamenti e ville selezionati in Liguria, per un weekend o tutta l'estate. Prenotazione diretta, senza commissioni.</span>
+          <span class="text-link">Scopri la collezione</span>
+        </span>
+      </a>
+      <a class="panel-choice manage" href="#gestione" data-where="split_manage">
+        <img class="photo" src="/assets/img/gestiamo.jpg" alt="" onerror="this.remove()">
+        <span class="frame" aria-hidden="true"></span>
+        <span class="choice-inner">
+          <span class="label">II · Per i proprietari</span>
+          <span class="choice-title">Gestiamo<br><em>la tua casa</em></span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="choice-text">Un servizio completo in tutta la Liguria: ospiti, pulizie, portali e burocrazia. Solo commissioni sulle prenotazioni effettive.</span>
+          <span class="text-link">Richiedi una valutazione</span>
+        </span>
+      </a>
+      <span class="monogram" aria-hidden="true">RR</span>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="section manifesto">
+      <div class="container narrow center reveal">
+        <span class="ornament" aria-hidden="true"></span>
+        <p class="quote">«Da oltre vent'anni ci prendiamo cura delle case in Liguria come fossero le nostre, e di chi le abita come fosse un ospite di casa.»</p>
+        <p class="signature">Riviera Rent</p>
+      </div>
+      <div class="container figures reveal">
+        <div><b>20<sup>+</sup></b><span>Anni in Liguria</span></div>
+        <div><b>0<sup>%</sup></b><span>Commissioni prenotando qui</span></div>
+        <div><b>7<sup>/7</sup></b><span>Assistenza locale</span></div>
+      </div>
+    </section>
+
+    <!-- COLLEZIONE -->
+    <section class="section section-bone" id="collezione">
+      <div class="container">
+        <div class="head">
+          <p class="label">La collezione</p>
+          <h2>Case vacanza <em>in Liguria</em></h2>
+          <p class="lead">Ogni casa è seguita personalmente dal nostro staff, dall'arrivo alla partenza. Prenotando direttamente paghi meno rispetto ai prezzi OTA.</p>
+        </div>
+
+        <form id="search" class="search" aria-label="Verifica la disponibilità">
+          <label>Arrivo<input type="date" name="checkin" required></label>
+          <label>Partenza<input type="date" name="checkout" required></label>
+          <label>Ospiti
+            <select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option value="9">9+</option></select>
+          </label>
+          <button class="btn btn-solid" type="submit">Verifica disponibilità</button>
+        </form>
+        <p id="search-msg" role="alert"></p>
+
+        <div class="filters" role="group" aria-label="Filtra le case">
+          <button class="filter" data-filter="all" aria-pressed="true">Tutte</button>
+          <button class="filter" data-filter="finale" aria-pressed="false">Al mare</button>
+          <button class="filter" data-filter="borgo" aria-pressed="false">Borgo storico</button>
+          <button class="filter" data-filter="hills" aria-pressed="false">In collina</button>
+          <button class="filter" data-filter="villa" aria-pressed="false">Ville</button>
+          <button class="filter" data-filter="pool" aria-pressed="false">Con piscina</button>
+        </div>
+        <div id="grid" class="grid" aria-live="polite"></div>
+        <p id="grid-empty" hidden></p>
+      </div>
+    </section>
+
+    <!-- SERVIZI SU MISURA -->
+    <section class="section" id="servizi">
+      <div class="container">
+        <div class="head center">
+          <p class="label">Oltre la casa</p>
+          <h2>Servizi <em>su misura</em></h2>
+          <p class="lead">Qualcosa in più di una casa: su richiesta dell'ospite organizziamo ogni dettaglio del soggiorno, in Liguria e in Costa Azzurra. Basta chiedere, anche prima dell'arrivo.</p>
+        </div>
+
+        <div class="pass">
+          <div class="pass-copy">
+            <span class="label">Il concierge</span>
+            <h3>Concierge <em>pass</em></h3>
+            <p>Una persona dedicata che conosce la Riviera: consigli su spiagge, ristoranti e locali diversi dai soliti, prenotazione di ristoranti, beach club e serate, e l'organizzazione di tutti i servizi qui sotto, in Liguria come in Costa Azzurra.</p>
+          </div>
+          <div class="pass-price">
+            <small>a partire da</small>
+            <b data-price="concierge.pass"></b>
+            <span>a settimana, per casa</span>
+            <a class="btn btn-solid" href="#contatti" data-topic="concierge">Richiedi il concierge</a>
+          </div>
+        </div>
+
+        <ul class="extras">
+          <li><span class="ex-num">I</span><b>Chef in casa</b><p>Cena o pranzo preparati nella vostra villa, con la spesa dal mercato locale. Menu ligure, di pesce o su richiesta.</p><em>da <i data-price="concierge.chef" data-unit="a persona"></i></em></li>
+          <li><span class="ex-num">II</span><b>Pulizie giornaliere</b><p>Riassetto quotidiano, cambio asciugamani e biancheria durante il soggiorno, negli orari che preferite.</p><em>da <i data-price="concierge.dailyClean" data-unit="all'ora"></i></em></li>
+          <li><span class="ex-num">III</span><b>Autista privato</b><p>Auto o minivan con autista per cene, serate e spostamenti. Transfer dagli aeroporti di Genova e Nizza.</p><em>da <i data-price="concierge.driver" data-unit="all'ora"></i> · transfer da <i data-price="concierge.transfer"></i></em></li>
+          <li><span class="ex-num">IV</span><b>Tour in Costa Azzurra</b><p>Una giornata tra Mentone, Monaco, Èze e Nizza con autista e itinerario su misura; ristoranti e locali prenotati da noi.</p><em>da <i data-price="concierge.tourRiviera" data-unit="al giorno, fino a 7 persone"></i></em></li>
+          <li><span class="ex-num">V</span><b>Tour in Liguria</b><p>Portofino, Cinque Terre, i borghi dell'entroterra e le cantine: una giornata organizzata in ogni dettaglio.</p><em>da <i data-price="concierge.tourLiguria" data-unit="al giorno, fino a 7 persone"></i></em></li>
+          <li><span class="ex-num">VI</span><b>Massaggi in casa</b><p>Massaggiatori professionisti con lettino, direttamente in villa o in giardino.</p><em>da <i data-price="concierge.massage" data-unit="50 minuti"></i></em></li>
+        </ul>
+
+        <div class="assist">
+          <span class="assist-badge">24/7</span>
+          <div>
+            <b>Assistenza di emergenza 24 ore su 24</b>
+            <p>Per ogni ospite della collezione un numero dedicato, attivo giorno e notte, comunicato al check-in. Incluso nel soggiorno.</p>
+          </div>
+        </div>
+        <p class="extras-note">Prezzi indicativi a partire da, IVA inclusa. Ogni servizio viene confermato con un preventivo prima della prenotazione.</p>
+      </div>
+    </section>
+
+    <!-- PROPRIETARI -->
+    <section class="section section-dark" id="gestione">
+      <div class="container owners">
+        <div class="owners-head reveal">
+          <p class="label label-light">Servizio di gestione</p>
+          <h2>Gestiamo la tua casa,<br><em>con discrezione e cura</em></h2>
+          <p class="lead">In tutta la Liguria, costa ed entroterra. Una commissione solo sulle prenotazioni effettive: se la casa non viene affittata, non paghi nulla.</p>
+          <a class="btn btn-outline-light" href="#contatti">Richiedi una valutazione riservata</a>
+        </div>
+        <ol class="services reveal">
+          <li><span>01</span><div><b>Presentazione della casa</b><p>Fotografie, descrizioni in più lingue, pubblicazione su Booking.com, Airbnb, Expedia, Vrbo e sul nostro sito.</p></div></li>
+          <li><span>02</span><div><b>Calendario unico</b><p>Sincronizzato su tutti i canali. Riservi le tue settimane quando desideri.</p></div></li>
+          <li><span>03</span><div><b>Accoglienza degli ospiti</b><p>Comunicazioni, check-in e assistenza durante tutto il soggiorno.</p></div></li>
+          <li><span>04</span><div><b>Cura della casa</b><p>Pulizie, biancheria e manutenzione con artigiani di fiducia.</p></div></li>
+          <li><span>05</span><div><b>Adempimenti</b><p>CIN, comunicazione alloggiati, imposta di soggiorno e rendiconto trasparente.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- METODO -->
+    <section class="section" id="metodo">
+      <div class="container">
+        <div class="head center">
+          <p class="label">Il metodo</p>
+          <h2>Quattro passaggi, <em>nessun pensiero</em></h2>
+        </div>
+        <ol class="steps reveal">
+          <li><span>I</span><b>Il primo incontro</b><p>Ci racconti la casa, di persona o su WhatsApp.</p></li>
+          <li><span>II</span><b>Sopralluogo e stima</b><p>Una valutazione realistica di prezzi e occupazione.</p></li>
+          <li><span>III</span><b>La presentazione</b><p>Fotografie, annunci, CIN e calendario su tutti i canali.</p></li>
+          <li><span>IV</span><b>L'accoglienza</b><p>Pensiamo noi agli ospiti. Tu ricevi il rendiconto.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DOMANDE -->
+    <section class="section section-bone" id="faq">
+      <div class="container narrow">
+        <div class="head center">
+          <p class="label">Domande frequenti</p>
+          <h2>Informazioni <em>utili</em></h2>
+        </div>
+        <div class="faq">
+          <details><summary>Prenotando direttamente pago di meno?</summary><p>Prenotando sul nostro sito non ci sono commissioni di intermediazione dei portali. Prezzo e condizioni sono sempre visibili prima della conferma.</p></details>
+          <details><summary>La disponibilità è sempre aggiornata?</summary><p>Sì, il calendario è collegato in tempo reale con Booking.com, Airbnb e gli altri portali.</p></details>
+          <details><summary>Come avviene l'arrivo?</summary><p>Vi accogliamo al nostro info point, aperto tutti i giorni 9:00–12:30 e 15:00–18:00, oppure direttamente in casa.</p></details>
+          <details><summary>Quanto costa il servizio di gestione?</summary><p>Una commissione solo sulle prenotazioni effettive. La percentuale dipende dalla casa e dai servizi e la comunichiamo per iscritto dopo il sopralluogo.</p></details>
+          <details><summary>In quali zone operate?</summary><p>In tutta la Liguria, costa ed entroterra.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="head center">
+          <p class="label">Contatti</p>
+          <h2>Siamo a <em>vostra disposizione</em></h2>
+        </div>
+        <div class="ways">
+          <a data-c="whatsapp" data-where="contact" target="_blank" rel="noopener" href="#"><small>WhatsApp</small><span data-c="mobile-text"></span></a>
+          <a data-c="phone" data-where="contact" href="#"><small>Telefono</small><span data-c="phone-text"></span></a>
+          <a data-c="email" data-where="contact" href="#"><small>Email</small><span data-c="email-text"></span></a>
+        </div>
+        <p class="hours center">Info point aperto · <span data-c="hours"></span></p>
+        <form id="contact-form" class="form" novalidate>
+          <div class="row">
+            <label>Nome<input name="name" autocomplete="name" required data-label="Nome"></label>
+            <label>Desidero
+              <select name="topic" data-label="Motivo">
+                <option value="booking">Affittare una casa vacanza</option>
+                <option value="concierge">Servizi su misura (concierge, chef, autista, tour)</option>
+                <option value="owner">Affidarvi la mia casa</option>
+                <option value="other">Altre informazioni</option>
+              </select>
+            </label>
+          </div>
+          <label>Date o zona (facoltativo)<input name="dates" data-label="Date / zona" placeholder="es. 10–17 luglio, 4 persone"></label>
+          <label>Messaggio<textarea name="message" required></textarea></label>
+          <div class="form-actions">
+            <button class="btn btn-solid" type="submit" value="whatsapp">Invia su WhatsApp</button>
+            <button class="btn btn-outline" type="submit" value="email">Invia via email</button>
+          </div>
+          <p id="form-msg" role="status"></p>
+          <p class="privacy-note">Il messaggio si apre nella tua app WhatsApp o email: nessun dato viene salvato su questo sito. <a href="/privacy.html">Privacy</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container center">
+      <span class="monogram monogram-foot" aria-hidden="true">RR</span>
+      <p class="foot-logo">Riviera Rent</p>
+      <p class="foot-sub">Case vacanza e gestione affitti · Liguria</p>
+      <p class="foot-links"><a data-c="phone" data-where="footer" href="#"><span data-c="phone-text"></span></a><a data-c="email" data-where="footer" href="#"><span data-c="email-text"></span></a><a data-c="facebook" target="_blank" rel="noopener" href="#">Facebook</a><a data-c="instagram" target="_blank" rel="noopener" href="#">Instagram</a><a data-c="youtube" target="_blank" rel="noopener" href="#">YouTube</a><a data-c="tiktok" target="_blank" rel="noopener" href="#">TikTok</a></p>
+      <p class="legal">© <span class="year">2026</span> Italianrivierarent.com S.r.l. · P.IVA 10293860960 · <a href="/privacy.html">Privacy &amp; cookie</a></p>
+    </div>
+  </footer>
+
+  <a class="fab" data-c="whatsapp" data-where="fab" target="_blank" rel="noopener" href="#" aria-label="Scrivici su WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+  </a>
+
+  <div id="cookie-bar" hidden role="dialog" aria-label="Cookie">
+    <p>Usiamo cookie tecnici e, con il tuo consenso, cookie di statistica e marketing (Google, Meta) per misurare le visite. <a href="/privacy.html">Dettagli</a></p>
+    <button id="cookie-reject" class="btn btn-outline">Solo necessari</button>
+    <button id="cookie-accept" class="btn btn-solid">Accetta</button>
+  </div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/properties.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/lusso/v3.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://rivierarent.it/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/en/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/proprietari/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/proprietari/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/owners/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/en/owners/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/proprietari/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/owners/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/lusso/</loc>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/bb-point/</loc>
+  </url>
+</urlset>
