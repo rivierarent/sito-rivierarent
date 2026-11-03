@@ -395,5 +395,15 @@ window.RR_PROPERTIES = [
       it: "Ingresso indipendente e giardino privato a Finale, 3 camere e 2 bagni: ideale per famiglie e gruppi.",
       en: "Private entrance and garden in Finale, 3 bedrooms and 2 bathrooms: ideal for families and groups."
     }
+  },
+  {
+    id: "villa-montebello", name: "Villa Montebello", area: "hills", type: "villa",
+    guests: 6, bedrooms: 3, bathrooms: 2, pool: false, seaView: true, bike: true,
+    features: ["wifi", "ac", "terrace", "parking", "bikestorage", "dishwasher", "washer"],
+    fromPrice: "", image: "/assets/img/case/villa-montebello/copertina.jpg", photos: 39, bookingUrl: "https://italianrivierarent.kross.travel/rivierarent-villa-montebello", cin: "IT009029B4HZS46L9O", citra: "009029-LT-3445",
+    desc: {
+      it: "Villa storica restaurata tra gli ulivi sopra Finale, terrazza vista mare con barbecue e garage per bici.",
+      en: "Restored historic villa among olive groves above Finale, sea-view terrace with barbecue and bike garage."
+    }
   }
 ];
