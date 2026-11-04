@@ -37,8 +37,8 @@ h3 { font-size: 1.35rem; }
 .head.center { text-align: center; }
 .head.center .lead { margin-inline: auto; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.skip { position: absolute; left: -999px; }
-.skip:focus { left: 16px; top: 16px; z-index: 200; background: #fff; padding: 8px 12px; }
+.skip { position: absolute; inset-inline-start: -999px; }
+.skip:focus { inset-inline-start: 16px; top: 16px; z-index: 200; background: #fff; padding: 8px 12px; }
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--terra); transform-origin: 0 50%; transform: scaleX(0); z-index: 120; }
 
 /* Pulsanti */
@@ -65,7 +65,7 @@ h3 { font-size: 1.35rem; }
 .logo-text em { color: var(--terra); }
 .logo.no-img .logo-text { display: inline; }
 #nav { display: flex; align-items: center; gap: 26px; }
-#nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .94rem; }
+#nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .94rem; white-space: nowrap; }
 #nav a:not(.btn):hover { color: var(--terra); }
 #nav a.btn { color: #fff; }
 .nav-toggle { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--cream); cursor: pointer; color: var(--ink); }
@@ -75,7 +75,7 @@ h3 { font-size: 1.35rem; }
 .nav-toggle[aria-expanded="true"] span { background: transparent; }
 .nav-toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   .nav-toggle { display: block; }
   /* niente backdrop-filter sul telefono: renderebbe il menu (position: fixed) alto quanto la barra, trasparente sul resto della pagina */
   .site-header, .site-header.scrolled { background: var(--cream); backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -85,6 +85,44 @@ h3 { font-size: 1.35rem; }
   #nav a { font: 500 2rem/1.3 var(--serif); }
   #nav a.btn { font: 700 1rem/1 var(--sans); margin-top: 18px; }
 }
+
+/* ---------- Menu lingue ---------- */
+#nav { margin-inline-start: auto; }
+.lang-menu { position: relative; margin-inline-start: 18px; }
+.lang-btn { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 10px 0 9px; border: 1px solid var(--line); border-radius: 99px; background: rgba(255, 255, 255, .75); color: var(--ink); font: 700 .8rem/1 var(--sans); letter-spacing: .04em; cursor: pointer; transition: background .2s, border-color .2s, box-shadow .2s; }
+.lang-btn:hover, .lang-btn[aria-expanded="true"] { background: #fff; border-color: rgba(34, 48, 58, .3); box-shadow: 0 4px 14px rgba(16, 24, 30, .08); }
+.lang-btn img, .lang-list img { width: 21px; height: 14px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); flex: none; }
+.lang-btn .chev { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.lang-list { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 120; min-width: 236px; max-height: min(70vh, 480px); overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 18px 40px rgba(16, 24, 30, .16); animation: langIn .16s var(--ease); }
+.lang-list[hidden] { display: none; }
+.lang-list a { display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px; color: var(--ink); text-decoration: none; font: 600 .92rem/1.2 var(--sans); white-space: nowrap; }
+.lang-list a:hover, .lang-list a:focus-visible { background: var(--cream); outline: none; }
+.lang-list a[aria-current="page"] { background: var(--sky); }
+.lang-list a[aria-current="page"]::after { content: "✓"; margin-inline-start: auto; color: var(--sea); font-weight: 800; }
+@keyframes langIn { from { opacity: 0; transform: translateY(-4px); } }
+@media (max-width: 1180px) {
+  .lang-menu { order: 2; margin-inline: auto 10px; }
+  .nav-toggle { order: 3; }
+  .lang-btn { height: 44px; }
+}
+@media (max-width: 480px) {
+  .lang-btn { padding: 0 9px; gap: 5px; }
+  .lang-btn span { display: none; }
+  .logo-img { height: 48px; }
+  .logo-text { font-size: 1.35rem; }
+}
+@media (prefers-reduced-motion: reduce) { .lang-list { animation: none; } }
+
+/* ---------- Cinese, giapponese, arabo ---------- */
+/* niente corsivo finto (queste scritture non hanno il corsivo): l'enfasi resta col colore */
+html:lang(zh) em, html:lang(ja) em, html:lang(ar) em { font-style: normal; }
+:lang(zh) .half-title, :lang(ja) .half-title { font-size: clamp(2.3rem, 4.4vw, 4.2rem); line-height: 1.15; letter-spacing: 0; word-break: keep-all; }
+:lang(zh) h2, :lang(ja) h2 { letter-spacing: 0; line-height: 1.25; }
+:lang(ar) .half-title { line-height: 1.2; letter-spacing: 0; }
+:lang(ar) h2 { letter-spacing: 0; line-height: 1.3; }
+:lang(zh) .or, :lang(ja) .or, :lang(ar) .or { font-style: normal; }
+:lang(ja) .or { font-size: .95rem; }
 
 /* ---------- Apertura divisa a metà ---------- */
 .split { position: relative; display: flex; height: 100svh; min-height: 640px; }

@@ -3,7 +3,9 @@
   document.documentElement.classList.add("js");
 
   var C = window.RR_CONFIG;
-  var LANG = document.documentElement.lang === "en" ? "en" : "it";
+  // Lingua della pagina: "it", "en", oppure quella di assets/js/i18n/<lingua>.js
+  var I18N = window.RR_I18N || null;
+  var LANG = I18N ? I18N.lang : (document.documentElement.lang === "en" ? "en" : "it");
 
   var T = {
     it: {
@@ -15,7 +17,8 @@
       dateError: "La data di partenza deve essere successiva a quella di arrivo.",
       photos: "foto", gallery: "Galleria foto", prev: "Foto precedente", next: "Foto successiva", close: "Chiudi",
       waIntro: "Ciao Riviera Rent, vorrei informazioni",
-      sent: "Grazie! Si apre WhatsApp/email con il messaggio pronto da inviare."
+      sent: "Grazie! Si apre WhatsApp/email con il messaggio pronto da inviare.",
+      priceTbd: "prezzo da definire"
     },
     en: {
       book: "Book", from: "from", night: "/ night", fromLong: "from", offerAsk: "Ask for this offer", details: "Ask for info", bedrooms: "bedrooms", bathrooms: "bathrooms", guests: "guests", bedroom: "bedroom", bathroom: "bathroom", guest: "guest",
@@ -26,9 +29,15 @@
       dateError: "Check-out must be after check-in.",
       photos: "photos", gallery: "Photo gallery", prev: "Previous photo", next: "Next photo", close: "Close",
       waIntro: "Hello Riviera Rent, I would like some information",
-      sent: "Thank you! WhatsApp/email will open with your message ready to send."
+      sent: "Thank you! WhatsApp/email will open with your message ready to send.",
+      priceTbd: "price to be set"
     }
   }[LANG];
+  if (I18N) T = I18N.ui;
+
+  // Alcuni dati esistono solo in italiano e inglese: le altre lingue usano la traduzione o l'inglese
+  function engineUrl() { return C.booking.engineUrl[LANG] || C.booking.engineUrl.en; }
+  function descOf(p) { return (I18N && I18N.desc[p.id]) || p.desc[LANG] || p.desc.en || p.desc.it; }
 
   function $(s, root) { return (root || document).querySelector(s); }
   function $$(s, root) { return Array.prototype.slice.call((root || document).querySelectorAll(s)); }
@@ -94,7 +103,7 @@
     $$("[data-c=whatsapp]").forEach(function (el) { el.href = waLink(); });
     $$("[data-c=address]").forEach(function (el) { el.textContent = k.address; });
     $$("[data-c=maps]").forEach(function (el) { el.href = k.mapsUrl; });
-    $$("[data-c=hours]").forEach(function (el) { el.textContent = k.hours[LANG]; });
+    $$("[data-c=hours]").forEach(function (el) { el.textContent = k.hours[LANG] || (I18N && I18N.hours) || k.hours.en; });
     $$("[data-c=facebook]").forEach(function (el) { if (k.facebook) el.href = k.facebook; else el.remove(); });
     ["instagram", "youtube", "tiktok"].forEach(function (n) {
       $$("[data-c=" + n + "]").forEach(function (el) { if (k[n]) el.href = k[n]; else el.remove(); });
@@ -114,7 +123,7 @@
         return '<a class="soc soc-' + n + '" href="' + esc(url) + '" target="_blank" rel="noopener" data-where="socials" aria-label="' + SOC[n][0] + '" title="' + SOC[n][0] + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + SOC[n][1] + "</svg></a>";
       }).join("");
     });
-    $$("[data-c=booking]").forEach(function (el) { el.href = C.booking.engineUrl[LANG]; });
+    $$("[data-c=booking]").forEach(function (el) { el.href = engineUrl(); });
     $$(".year").forEach(function (el) { el.textContent = new Date().getFullYear(); });
     $$("[data-c=count]").forEach(function (el) { el.setAttribute("data-count", (window.RR_PROPERTIES || []).length); });
 
@@ -140,7 +149,7 @@
 
   function bookingUrl(base, q) {
     var dp = C.booking.dateParams;
-    var url = base || C.booking.engineUrl[LANG];
+    var url = base || engineUrl();
     if (!dp || !q) return url;
     var parts = [];
     if (q.checkin) parts.push(dp.checkin + "=" + encodeURIComponent(fmtDate(q.checkin, dp.format)));
@@ -206,7 +215,7 @@
         '<p class="card-area">' + T.area[p.area] + "</p>" +
         "<h3>" + esc(p.name) + "</h3>" +
         (facts.length ? '<p class="facts">' + facts.join(" · ") + "</p>" : "") +
-        "<p>" + esc(p.desc[LANG]) + "</p>" +
+        "<p>" + esc(descOf(p)) + "</p>" +
         (tags ? '<div class="tags">' + tags + "</div>" : "") +
         (p.cin || p.citra ? '<p class="cin">' + [p.cin ? "CIN " + esc(p.cin) : "", p.citra ? "CITRA " + esc(p.citra) : ""].filter(Boolean).join(" · ") + "</p>" : "") +
         '<div class="card-actions">' +
@@ -306,7 +315,8 @@
       if (!f.checkValidity()) { f.reportValidity(); return; }
       var topicEl = f.topic;
       var topicText = topicEl.tagName === "SELECT" ? topicEl.options[topicEl.selectedIndex].text : topicEl.getAttribute("data-text");
-      var lines = [(f.getAttribute("data-intro") || T.waIntro) + "."];
+      var intro = f.getAttribute("data-intro") || T.waIntro;
+      var lines = [intro + (/[.!?。！？]$/.test(intro) ? "" : (LANG === "zh" || LANG === "ja" ? "。" : "."))];
       $$("[data-label]", f).forEach(function (el) {
         var v = el.tagName === "SELECT" ? el.options[el.selectedIndex].text : el.value.trim();
         if (v) lines.push(el.getAttribute("data-label") + ": " + v);
@@ -400,7 +410,7 @@
         n.appendChild(document.createTextNode("€ "));
         var b = document.createElement("span");
         b.className = "blank-line";
-        b.setAttribute("aria-label", LANG === "en" ? "price to be set" : "prezzo da definire");
+        b.setAttribute("aria-label", T.priceTbd);
         n.appendChild(b);
       } else {
         n.appendChild(document.createTextNode(/^[\d.,]+$/.test(v) ? "€ " + v : v));
@@ -500,7 +510,42 @@
     });
   }
 
+  /* ---------- Menu lingue ---------- */
+  function initLangMenu() {
+    var btn = $(".lang-btn"), list = $("#lang-list");
+    if (!btn || !list) return;
+    function links() { return $$("a", list); }
+    function open(focusFirst) {
+      list.hidden = false; btn.setAttribute("aria-expanded", "true");
+      if (focusFirst) (list.querySelector("[aria-current]") || links()[0]).focus();
+    }
+    function close(focusBtn) {
+      if (list.hidden) return;
+      list.hidden = true; btn.setAttribute("aria-expanded", "false");
+      if (focusBtn) btn.focus();
+    }
+    btn.addEventListener("click", function () { if (list.hidden) open(false); else close(false); });
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); open(true); }
+    });
+    list.addEventListener("keydown", function (e) {
+      var a = links(), i = a.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); a[(i + 1) % a.length].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); a[(i - 1 + a.length) % a.length].focus(); }
+      else if (e.key === "Home") { e.preventDefault(); a[0].focus(); }
+      else if (e.key === "End") { e.preventDefault(); a[a.length - 1].focus(); }
+      else if (e.key === "Escape") close(true);
+      else if (e.key === "Tab") close(false);
+    });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".lang-menu")) close(false); });
+    list.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (a) track("language_change", { to: a.getAttribute("hreflang") });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    initLangMenu();
     hideExpired();
     fillContacts();
     fillPrices();

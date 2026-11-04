@@ -4,11 +4,155 @@
     <loc>https://rivierarent.it/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
   </url>
   <url>
     <loc>https://rivierarent.it/en/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/fr-be/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/de/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/de-at/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/nl-be/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
+  </url>
+  <url>
+    <loc>https://rivierarent.it/ar/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://rivierarent.it/fr-be/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://rivierarent.it/de/"/>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://rivierarent.it/de-at/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://rivierarent.it/nl/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://rivierarent.it/nl-be/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://rivierarent.it/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://rivierarent.it/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://rivierarent.it/ar/"/>
   </url>
   <url>
     <loc>https://rivierarent.it/proprietari/</loc>

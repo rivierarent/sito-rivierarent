@@ -34,7 +34,12 @@ window.RR_CONFIG = {
   booking: {
     // I pulsanti "Prenota" aprono il portale Kross: il vecchio motore v4
     // (https://book.krossbooking.com/v4/italianrivierarent/) mostrava un errore e si ricaricava dopo qualche secondo.
-    engineUrl: { it: "https://italianrivierarent.kross.travel/it", en: "https://italianrivierarent.kross.travel/en" },
+    // Lingue del portale Kross: per cinese e giapponese (non disponibili) si apre la versione inglese.
+    engineUrl: {
+      it: "https://italianrivierarent.kross.travel/it", en: "https://italianrivierarent.kross.travel/en",
+      fr: "https://italianrivierarent.kross.travel/fr", de: "https://italianrivierarent.kross.travel/de",
+      nl: "https://italianrivierarent.kross.travel/nl", ar: "https://italianrivierarent.kross.travel/ar"
+    },
     portalUrl: { it: "https://italianrivierarent.kross.travel/it", en: "https://italianrivierarent.kross.travel/en" },
     dateParams: null
   },
