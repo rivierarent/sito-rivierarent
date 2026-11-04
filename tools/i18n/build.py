@@ -8,9 +8,11 @@ Le traduzioni stanno in tools/i18n/<lingua>.json. Se nella home italiana cambia 
 la build si ferma e indica quali frasi mancano: aggiungerle nei file .json e rilanciare
 (controllo: python3 tools/i18n/check.py <lingua>).
 """
+import html as html_mod
 import json
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -37,6 +39,9 @@ LANGS = [
 RTL = {"ar"}
 MENU_RE = re.compile(r"[ \t]*<!-- lang-menu -->.*?<!-- /lang-menu -->\n?", re.S)
 MENU_MARK = "<!--LANGMENU-->"
+CARDS_MARK = "<!--CARDS-->"
+JSONLD_MARK = "<!--JSONLD-->"
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 
 def read(path):
@@ -52,8 +57,90 @@ def write(path, text):
 
 
 def strip_menu(src):
-    """Toglie il menu lingue (non va tradotto) lasciando un segnaposto."""
-    return MENU_RE.sub(MENU_MARK, src, count=1)
+    """Toglie le parti generate (menu lingue, schede, dati strutturati) lasciando dei segnaposto."""
+    src = MENU_RE.sub(MENU_MARK, src, count=1)
+    src = re.sub(r"<!-- cards -->.*?<!-- /cards -->", CARDS_MARK, src, count=1, flags=re.S)
+    src = re.sub(r"[ \t]*<!-- jsonld -->.*?<!-- /jsonld -->\n?", JSONLD_MARK, src, count=1, flags=re.S)
+    return src
+
+
+def prerender(lang):
+    """Schede delle case e dati per una lingua, calcolati da tools/i18n/prerender.js (serve Node)."""
+    out = subprocess.run(["node", os.path.join(HERE, "prerender.js"), lang],
+                         capture_output=True, text=True, encoding="utf-8", check=True).stdout
+    return json.loads(out)
+
+
+def plain(s):
+    return re.sub(r"\s+", " ", html_mod.unescape(re.sub(r"<[^>]+>", " ", s))).strip()
+
+
+SCHEMA_TYPE = {"apartment": "Apartment", "villa": "House", "house": "House"}
+
+
+def jsonld(page, code, data):
+    _, path, hl, *_ = next(l for l in LANGS if l[0] == code)
+    k = data["contacts"]
+    desc = re.search(r'<meta name="description" content="([^"]*)"', page).group(1)
+    business = {
+        "@type": "LodgingBusiness", "@id": SITE + "/#business",
+        "name": "Riviera Rent", "alternateName": "Italian Riviera Rent",
+        "url": SITE + path, "logo": SITE + "/assets/img/logo.svg", "image": SITE + "/assets/img/og-image.jpg",
+        "description": html_mod.unescape(desc),
+        "telephone": k["phoneHref"].replace("tel:", ""), "email": k["email"],
+        "address": {"@type": "PostalAddress", "streetAddress": "Via Brunenghi 87/100", "postalCode": "17024",
+                    "addressLocality": "Finale Ligure", "addressRegion": "SV", "addressCountry": "IT"},
+        "areaServed": {"@type": "AdministrativeArea", "name": "Liguria"},
+        "openingHoursSpecification": [
+            {"@type": "OpeningHoursSpecification", "dayOfWeek": DAYS, "opens": "09:00", "closes": "12:30"},
+            {"@type": "OpeningHoursSpecification", "dayOfWeek": DAYS, "opens": "15:00", "closes": "18:00"}],
+        "contactPoint": {"@type": "ContactPoint", "telephone": k["phoneHref"].replace("tel:", ""), "email": k["email"],
+                         "contactType": "customer service", "availableLanguage": ["Italian", "English"]},
+        "priceRange": "€€", "currenciesAccepted": "EUR", "vatID": "IT10293860960",
+        "sameAs": [u for u in [k.get("facebook"), k.get("instagram"), k.get("youtube"), k.get("tiktok")] if u],
+    }
+    T = data["T"]
+    items = []
+    for i, p in enumerate(data["properties"]):
+        a = {"@type": SCHEMA_TYPE.get(p["type"], "Accommodation"), "name": p["name"], "description": p["desc"],
+             "url": p["bookingUrl"],
+             "address": {"@type": "PostalAddress", "addressRegion": "Liguria", "addressCountry": "IT"}}
+        if p["image"]:
+            a["image"] = SITE + p["image"]
+        if p["guests"]:
+            a["occupancy"] = {"@type": "QuantitativeValue", "maxValue": p["guests"], "unitCode": "C62"}
+        if p["bedrooms"]:
+            a["numberOfBedrooms"] = p["bedrooms"]
+        if p["bathrooms"]:
+            a["numberOfBathroomsTotal"] = p["bathrooms"]
+        feats = [{"@type": "LocationFeatureSpecification", "name": T[f], "value": True} for f in ("pool", "seaView", "bike") if p[f]]
+        if feats:
+            a["amenityFeature"] = feats
+        ids = [{"@type": "PropertyValue", "propertyID": n.upper(), "value": p[n]} for n in ("cin", "citra") if p[n]]
+        if ids:
+            a["identifier"] = ids
+        if p["fromPrice"]:
+            a["additionalProperty"] = {"@type": "PropertyValue", "name": "%s € / %s" % (T["from"], T["night"].strip("/ ")),
+                                       "value": int(p["fromPrice"]), "unitText": "EUR"}
+        items.append({"@type": "ListItem", "position": i + 1, "item": a})
+    faq = [{"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": plain(a)}}
+           for q, a in re.findall(r"<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>", page, re.S)]
+    graph = [
+        {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Riviera Rent",
+         "inLanguage": hl, "publisher": {"@id": SITE + "/#business"}},
+        business,
+        {"@type": "ItemList", "name": "Riviera Rent", "numberOfItems": len(items), "itemListElement": items},
+    ]
+    if faq:
+        graph.append({"@type": "FAQPage", "inLanguage": hl, "mainEntity": faq})
+    body = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    return '  <!-- jsonld -->\n  <script type="application/ld+json">\n%s\n  </script>\n  <!-- /jsonld -->\n' % body
+
+
+def fill(page, code, label, data):
+    page = fix_head(page, code).replace(MENU_MARK, lang_menu(code, label), 1)
+    page = page.replace(CARDS_MARK, "<!-- cards -->\n" + data["cards"] + "\n<!-- /cards -->", 1)
+    return page.replace(JSONLD_MARK, jsonld(page, code, data), 1)
 
 
 def lang_menu(cur, label):
@@ -99,39 +186,110 @@ def ui_label(code, tr):
     return tr["ui"]["langLabel"] if tr else "Lingua"
 
 
+def llms_txt(rendered):
+    """llms.txt: riassunto del sito per gli assistenti AI (ChatGPT, Claude, Perplexity...)."""
+    en = rendered["en"]
+    k, b = en["contacts"], en["bbPoint"]
+    T = en["T"]
+    page = read("en/index.html")
+    faq = re.findall(r"<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>", page, re.S)
+    out = [
+        "# Riviera Rent",
+        "",
+        "> Holiday homes in Liguria (Italian Riviera) bookable directly, and short-let property management "
+        "for owners across Liguria. Based in Finale Ligure (SV), Italy, for over 20 years. "
+        "Operated by Italianrivierarent.com S.r.l., VAT IT10293860960.",
+        "",
+        "## Key facts",
+        "",
+        "- %s holiday homes in Liguria, mostly in Finale Ligure (seafront, the medieval village of Finalborgo, the hills inland) and nearby towns such as Pietra Ligure, Borgio Verezzi, Spotorno and Alassio." % en["homesCount"],
+        "- Booking direct online on rivierarent.it costs 10% less than the same home and dates on OTAs (Booking.com, Airbnb, Expedia); by phone or WhatsApp 5% less.",
+        "- Free loyalty programme (Riviera Rent Club): 1 point per € 10 spent, 100 points = € 50 off the next stay.",
+        "- Official partner of Finale Enduro; several bike-friendly homes with bike storage and washing.",
+        "- Info point / office: %s. Opening hours: %s." % (k["address"], en["hours"].lower()),
+        "- Phone %s · WhatsApp %s · Email %s" % (k["phone"], k["mobile"], k["email"]),
+        "- Online booking: %s" % en["engine"],
+        "",
+        "## Pages",
+        "",
+        "- [Home (Italian)](%s/): holiday homes, offers, owner services, B&B Point, FAQ, contacts" % SITE,
+    ]
+    for _, path, hl, name, *_ in LANGS[1:]:
+        out.append("- [%s](%s%s): same content in %s" % (name, SITE, path, name))
+    out += [
+        "- [Owners (Italian)](%s/proprietari/) · [Owners (English)](%s/en/owners/): short-let management for owners" % (SITE, SITE),
+        "- [Luxury collection](%s/lusso/): villas with concierge, private chef, driver, tours" % SITE,
+        "- [B&B Point](%s/bb-point/): à-la-carte services for owners who self-manage" % SITE,
+        "- [Riviera News](%s/riviera-news/): events, things to do and where to eat between Genoa and the Côte d'Azur" % SITE,
+        "",
+        "## Services for owners",
+        "",
+        "- Full management: listings and photos, channel manager on Booking.com/Airbnb/Expedia/Vrbo, pricing, guest communication, check-in, cleaning, linen, maintenance, Italian paperwork (CIN, police guest registration, tourist tax). Commission only on actual bookings.",
+        "- B&B Point (no management contract): key handover € %s (office hours) or € %s (after hours); linen pack € %s per person (deposit € %s); cleaning from € %s (studio) to € %s (villa); paperwork € %s per booking or € %s per month." % (
+            b["keysOffice"], b["keysAfter"], b["linenPack"], b["linenDeposit"], b["cleanStudio"], b["cleanHouse"], b["bureauBooking"], b["bureauMonth"]),
+        "",
+        "## Holiday homes",
+        "",
+    ]
+    for p in en["properties"]:
+        facts = []
+        for f in ("guest", "bedroom", "bathroom"):
+            n = p[f + "s"]
+            if n:
+                facts.append("%s %s" % (n, T[f] if n == 1 else T[f + "s"]))
+        facts += [T[f] for f in ("pool", "seaView", "bike") if p[f]]
+        if p["fromPrice"]:
+            facts.append("from € %s per night" % p["fromPrice"])
+        line = "- [%s](%s) — %s, %s. %s" % (p["name"], p["bookingUrl"], T["type"][p["type"]], T["area"][p["area"]].lower(), p["desc"])
+        if facts:
+            line += " (%s)" % ", ".join(facts)
+        if p["cin"]:
+            line += " CIN %s." % p["cin"]
+        out.append(line)
+    if faq:
+        out += ["", "## FAQ", ""]
+        for q, a in faq:
+            out += ["### " + plain(q), "", plain(a), ""]
+    return "\n".join(out).rstrip() + "\n"
+
+
 def build():
     src = read("index.html")
-    if "<!-- lang-menu -->" not in src:
-        sys.exit("Manca il menu lingue in index.html (segnaposto <!-- lang-menu --> ... <!-- /lang-menu -->)")
+    for mark in ("<!-- lang-menu -->", "<!-- cards -->", "<!-- jsonld -->"):
+        if mark not in src:
+            sys.exit("Manca il segnaposto %s in index.html" % mark)
     base = strip_menu(src)
     it_ui = json.load(open(os.path.join(HERE, "source.json"), encoding="utf-8"))["ui_it"]
 
-    # 1) home italiana: aggiorna solo menu e link alternativi
-    it_html = fix_head(base, "it").replace(MENU_MARK, lang_menu("it", it_ui["langLabel"]), 1)
-    write("index.html", it_html)
-
-    problems = {}
+    # 1) traduzioni e testi per main.js (schede delle case, galleria, modulo...)
     loaded = {}
-    for code, path, hl, name, flag, short, locale, tr_code in LANGS[1:]:
-        if tr_code not in loaded:
-            loaded[tr_code] = json.load(open(os.path.join(HERE, tr_code + ".json"), encoding="utf-8"))
-        tr = loaded[tr_code]
-        missing = []
-        html = segments.apply(base, tr["page"], missing)
-        if missing:
-            problems[tr_code] = sorted(set(missing))
-            continue
-        html = fix_head(html, code).replace(MENU_MARK, lang_menu(code, tr["ui"]["langLabel"]), 1)
-        html = html.replace('  <script src="/assets/js/main.js"></script>',
-                            '  <script src="/assets/js/i18n/%s.js"></script>\n  <script src="/assets/js/main.js"></script>' % tr_code, 1)
-        write(path.strip("/") + "/index.html", html)
-
-    # 2) testi per main.js (schede delle case, galleria, modulo...)
-    for tr_code, tr in loaded.items():
+    for tr_code in sorted({l[7] for l in LANGS if l[7]}):
+        tr = loaded[tr_code] = json.load(open(os.path.join(HERE, tr_code + ".json"), encoding="utf-8"))
         data = {"lang": tr_code, "ui": tr["ui"], "hours": tr["hours"], "desc": tr["desc"]}
         write("assets/js/i18n/%s.js" % tr_code,
               "/* Generato da tools/i18n/build.py: non modificare a mano, modificare tools/i18n/%s.json */\n"
               "window.RR_I18N = %s;\n" % (tr_code, json.dumps(data, ensure_ascii=False, indent=1)))
+    rendered = {c: prerender(c) for c in ["it"] + sorted(loaded)}
+
+    # 2) home italiana: menu, schede e dati strutturati
+    write("index.html", fill(base, "it", it_ui["langLabel"], rendered["it"]))
+
+    # 3) le altre lingue
+    problems = {}
+    for code, path, hl, name, flag, short, locale, tr_code in LANGS[1:]:
+        tr = loaded[tr_code]
+        missing = []
+        page = segments.apply(base, tr["page"], missing)
+        if missing:
+            problems[tr_code] = sorted(set(missing))
+            continue
+        page = fill(page, code, tr["ui"]["langLabel"], rendered[tr_code])
+        page = page.replace('  <script src="/assets/js/main.js"></script>',
+                            '  <script src="/assets/js/i18n/%s.js"></script>\n  <script src="/assets/js/main.js"></script>' % tr_code, 1)
+        write(path.strip("/") + "/index.html", page)
+
+    # 4) scheda del sito per gli assistenti AI
+    write("llms.txt", llms_txt(rendered))
 
     if problems:
         for k, v in problems.items():

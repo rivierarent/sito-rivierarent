@@ -5,4 +5,24 @@ Disallow: /anteprime/
 Disallow: /cartellone/
 Disallow: /offerte-mondiali/
 
+# Motori di ricerca e assistenti AI: benvenuti (servono per comparire nelle loro risposte)
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /classico/
+Disallow: /anteprime/
+Disallow: /cartellone/
+Disallow: /offerte-mondiali/
+
 Sitemap: https://rivierarent.it/sitemap.xml

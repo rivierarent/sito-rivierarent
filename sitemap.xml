@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://rivierarent.it/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -16,6 +17,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/en/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -30,6 +32,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/fr/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -44,6 +47,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/fr-be/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -58,6 +62,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/de/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -72,6 +77,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/de-at/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -86,6 +92,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/nl/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -100,6 +107,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/nl-be/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -114,6 +122,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/zh/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -128,6 +137,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/ja/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -142,6 +152,7 @@
   </url>
   <url>
     <loc>https://rivierarent.it/ar/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://rivierarent.it/fr/"/>
@@ -156,21 +167,26 @@
   </url>
   <url>
     <loc>https://rivierarent.it/proprietari/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/proprietari/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/owners/"/>
   </url>
   <url>
     <loc>https://rivierarent.it/en/owners/</loc>
+    <lastmod>2026-11-04</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://rivierarent.it/proprietari/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rivierarent.it/en/owners/"/>
   </url>
   <url>
     <loc>https://rivierarent.it/lusso/</loc>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://rivierarent.it/bb-point/</loc>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://rivierarent.it/riviera-news/</loc>
+    <lastmod>2026-11-04</lastmod>
   </url>
 </urlset>
