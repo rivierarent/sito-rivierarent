@@ -6,6 +6,9 @@
 window.RR_CONFIG = {
   brand: "Riviera Rent",
 
+  // Numero di "case vacanza in Liguria" mostrato in home. Vuoto = conta le case in properties.js
+  homesCount: "60",
+
   contacts: {
     phone: "+39 019 68111",
     phoneHref: "tel:+3901968111",

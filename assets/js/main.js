@@ -125,7 +125,7 @@
     });
     $$("[data-c=booking]").forEach(function (el) { el.href = engineUrl(); });
     $$(".year").forEach(function (el) { el.textContent = new Date().getFullYear(); });
-    $$("[data-c=count]").forEach(function (el) { el.setAttribute("data-count", (window.RR_PROPERTIES || []).length); });
+    $$("[data-c=count]").forEach(function (el) { el.setAttribute("data-count", C.homesCount || (window.RR_PROPERTIES || []).length); });
 
     // Tracciamento click su tutti i canali di contatto
     document.addEventListener("click", function (e) {
