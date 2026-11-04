@@ -23,6 +23,14 @@ La home italiana (`index.html`) è il modello: le versioni `/en/`, `/fr/`, `/fr-
 - Una casa nuova in `properties.js` senza traduzione mostra la descrizione inglese nelle altre lingue finché non si aggiunge in `desc` dei `.json`.
 - La build richiede Python 3 e Node.js. **Va rilanciata anche dopo aver modificato `properties.js` o `config.js`**: scrive le schede delle case direttamente nell'HTML, insieme ai dati strutturati e a `llms.txt`.
 
+## Pagine delle case
+
+- Ogni casa ha la sua pagina: `/case/<id>/` in italiano e `/en/homes/<id>/` in inglese (nelle altre lingue le schede portano alla pagina inglese).
+- Descrizione completa, dotazioni, letti e orari arrivano da Kross: `python3 tools/kross_sync.py` li scarica in `tools/kross/data.json`, poi `python3 tools/i18n/build.py` rigenera le pagine.
+- Se su Kross manca il testo inglese di una casa, la traduzione va in `tools/kross/en_manual.json` (la sincronizzazione non lo tocca).
+- Una casa nuova in `properties.js` ottiene la sua pagina dopo `kross_sync.py` + `build.py`.
+- La sitemap la genera la build.
+
 ## SEO, GEO e AEO
 
 - Le schede delle case sono già nell'HTML (non solo create dal JavaScript), così le leggono Google e gli assistenti AI (ChatGPT, Claude, Perplexity), che di solito non eseguono gli script.

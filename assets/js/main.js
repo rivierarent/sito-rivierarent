@@ -160,6 +160,7 @@
   var ICONS = window.RR_CARDS.ICONS;
 
   var card = window.RR_CARDS.make({ T: T, waLink: waLink, bookingUrl: bookingUrl, descOf: descOf });
+  // Il nome della casa porta alla sua pagina (/case/<id>/, in inglese /en/homes/<id>/): solo nelle schede generate dalla build
 
   /* ---------- Offerte in evidenza (RR_CONFIG.offers) ---------- */
   function initOffers() {
@@ -211,7 +212,8 @@
     var grid = $("#grid");
     if (!grid) return;
     var list = window.RR_PROPERTIES || [];
-    grid.innerHTML = list.map(card).join("");
+    // Le home generate hanno le schede gia' nell'HTML (per Google e gli assistenti AI): si usano quelle
+    if (!grid.querySelector(".card")) grid.innerHTML = list.map(card).join("");
     var active = "all";
     function apply() {
       var shown = 0;
@@ -411,13 +413,13 @@
       $(".gal-n", box).textContent = (idx + 1) + " / " + cur.photos;
       [idx + 1, idx - 1].forEach(function (j) { new Image().src = src(cur, (j + cur.photos) % cur.photos); });
     }
-    function open(id) {
+    function open(id, start) {
       cur = props[id]; if (!cur || !cur.photos) return;
       lastFocus = document.activeElement;
       $(".gal-name", box).textContent = cur.name;
       var a = $(".gal-book a", box); a.href = bookingUrl(cur.bookingUrl); a.setAttribute("data-property", cur.id);
       box.hidden = false; document.documentElement.style.overflow = "hidden";
-      show(0); $(".gal-close", box).focus();
+      show(start || 0); $(".gal-close", box).focus();
     }
     function close() {
       box.hidden = true; document.documentElement.style.overflow = ""; img.removeAttribute("src");
@@ -425,7 +427,7 @@
     }
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest(".gal-open");
-      if (b) { e.preventDefault(); open(b.getAttribute("data-gallery")); }
+      if (b) { e.preventDefault(); open(b.getAttribute("data-gallery"), parseInt(b.getAttribute("data-index") || "0", 10)); }
     });
     $(".gal-close", box).addEventListener("click", close);
     $(".gal-prev", box).addEventListener("click", function () { show(idx - 1); });

@@ -482,3 +482,65 @@ html:lang(zh) em, html:lang(ja) em, html:lang(ar) em { font-style: normal; }
 .soc-facebook:hover { background: #1877f2; } .soc-instagram:hover { background: #d62976; } .soc-youtube:hover { background: #ff0000; } .soc-tiktok:hover { background: #000; } .soc-whatsapp:hover { background: #1faa59; }
 .socials-foot { margin-top: 14px; }
 .site-footer .soc { background: rgba(255, 255, 255, .12); }
+
+/* ---------- Pagina della singola casa (/case/<id>/, /en/homes/<id>/) ---------- */
+.house-page .site-header { background: rgba(251, 245, 236, .94); box-shadow: 0 1px 0 var(--line); }
+.card-body h3 a { color: inherit; text-decoration: none; }
+.card-body h3 a:hover { color: var(--terra); text-decoration: underline; text-underline-offset: 4px; }
+.house { padding-top: 104px; padding-bottom: 40px; }
+.crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 22px; }
+.crumbs a { color: var(--sea); text-decoration: none; font-weight: 600; }
+.crumbs a:hover { text-decoration: underline; }
+.house-head h1 { font: 500 clamp(2.4rem, 5.5vw, 4.4rem)/1.02 var(--serif); letter-spacing: -.03em; margin: 0 0 .25em; }
+.house-head .kicker { margin-bottom: .8em; }
+.house-facts { font-weight: 700; margin: 0 0 12px; }
+.house-mosaic { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 8px; height: clamp(300px, 46vw, 520px); margin-top: 22px; border-radius: 22px; overflow: hidden; }
+.house-mosaic .gal-open.house-pic { position: relative; overflow: hidden; background: #e9e1d4; min-height: 0; }
+.house-pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.house-pic:hover img { transform: scale(1.04); }
+.house-mosaic .gal-open.house-pic-main { grid-row: span 2; }
+.house-mosaic .gal-open.house-pic:only-child { grid-column: 1 / -1; }
+/* il pulsante apre la galleria: main.js azzera lo stile di .gal-open, quindi va ridichiarato */
+.house .gal-open.house-all { display: inline-flex; width: auto; height: auto; margin-top: 14px; padding: .8em 1.3em; border: 1.5px solid var(--ink); border-radius: 999px; font: 700 .9rem/1 var(--sans); color: var(--ink); cursor: pointer; }
+.house .gal-open.house-all:hover { background: var(--ink); color: #fff; }
+.house-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(28px, 5vw, 64px); align-items: start; margin-top: clamp(28px, 4vw, 48px); }
+.house-main .lead { font-size: 1.2rem; color: var(--ink); max-width: none; }
+.house-sec { padding: 26px 0; border-top: 1px solid var(--line); }
+.house-sec h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.house-sec p { max-width: 70ch; }
+.house-amen { columns: 3 200px; column-gap: 28px; margin: 0; padding: 0; list-style: none; }
+.house-amen li { break-inside: avoid; padding: 5px 0 5px 24px; position: relative; }
+.house-amen li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: var(--shutter); font-weight: 800; }
+.house-beds { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.house-beds li { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 3px; }
+.house-beds b { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; }
+.house-times { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 0; }
+.house-times dt { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sea); }
+.house-times dd { margin: 4px 0 0; font: 500 1.4rem/1.2 var(--serif); }
+.house-map { font-weight: 700; color: var(--sea); }
+.house-book { position: sticky; top: 100px; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 26px; box-shadow: 0 18px 40px rgba(16, 24, 30, .08); display: flex; flex-direction: column; gap: 12px; }
+.house-book h2 { font-size: 1.8rem; margin: 0; }
+.house-book .btn { justify-content: center; }
+.house-book p { margin: 0; font-size: .9rem; color: var(--muted); }
+.house-price { display: flex; flex-direction: column; gap: 2px; }
+.house-price small { font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--terra); }
+.house-price b { font: 500 2.6rem/1 var(--serif); }
+.house-others { padding: 30px 0 80px; }
+.house-others h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.house-others-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 26px; }
+.house-other { display: flex; flex-direction: column; gap: 6px; color: var(--ink); text-decoration: none; }
+.house-other img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; border-radius: 16px; transition: transform .5s var(--ease); }
+.house-other:hover img { transform: translateY(-4px); }
+.house-other b { font: 500 1.35rem/1.15 var(--serif); }
+.house-other span { font-size: .88rem; color: var(--muted); }
+@media (max-width: 960px) {
+  .house-grid { grid-template-columns: 1fr; }
+  .house-book { position: static; }
+}
+@media (max-width: 700px) {
+  .house-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; height: auto; }
+  .house-mosaic .gal-open.house-pic-main { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; }
+  .house-mosaic .gal-open.house-pic:not(.house-pic-main) { aspect-ratio: 1; }
+  .house-mosaic .gal-open.house-pic:nth-child(n+4) { display: none; }
+  .house-others-grid { grid-template-columns: 1fr; }
+}

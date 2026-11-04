@@ -18,6 +18,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
+import houses  # noqa: E402
 import segments  # noqa: E402
 
 SITE = "https://rivierarent.it"
@@ -186,6 +187,30 @@ def ui_label(code, tr):
     return tr["ui"]["langLabel"] if tr else "Lingua"
 
 
+def sitemap(house_urls):
+    today = __import__("datetime").date.today().isoformat()
+    def url(loc, alts=None):
+        x = "  <url>\n    <loc>%s%s</loc>\n    <lastmod>%s</lastmod>" % (SITE, loc, today)
+        for hl, href in (alts or []):
+            x += '\n    <xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>' % (hl, SITE, href)
+        return x + "\n  </url>"
+    homes = [(hl, path) for _, path, hl, *_ in LANGS] + [("x-default", "/")]
+    out = [url(path, homes) for _, path, *_ in LANGS]
+    owners = [("it", "/proprietari/"), ("en", "/en/owners/")]
+    out += [url("/proprietari/", owners), url("/en/owners/", owners)]
+    out += [url(p) for p in ("/lusso/", "/bb-point/", "/riviera-news/")]
+    for u in house_urls:
+        if u.startswith("/case/"):
+            pid = u.split("/")[2]
+            alts = [("it", u), ("en", houses.PATHS["en"] % pid), ("x-default", u)]
+            out.append(url(u, alts))
+            if houses.PATHS["en"] % pid in house_urls:
+                out.append(url(houses.PATHS["en"] % pid, alts))
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+            + "\n".join(out) + "\n</urlset>\n")
+
+
 def llms_txt(rendered):
     """llms.txt: riassunto del sito per gli assistenti AI (ChatGPT, Claude, Perplexity...)."""
     en = rendered["en"]
@@ -240,11 +265,14 @@ def llms_txt(rendered):
         facts += [T[f] for f in ("pool", "seaView", "bike") if p[f]]
         if p["fromPrice"]:
             facts.append("from € %s per night" % p["fromPrice"])
-        line = "- [%s](%s) — %s, %s. %s" % (p["name"], p["bookingUrl"], T["type"][p["type"]], T["area"][p["area"]].lower(), p["desc"])
+        link = SITE + p["page"] if p.get("page") else p["bookingUrl"]
+        line = "- [%s](%s) — %s, %s. %s" % (p["name"], link, T["type"][p["type"]], T["area"][p["area"]].lower(), p["desc"])
         if facts:
             line += " (%s)" % ", ".join(facts)
         if p["cin"]:
             line += " CIN %s." % p["cin"]
+        if p.get("page"):
+            line += " Book: %s" % p["bookingUrl"]
         out.append(line)
     if faq:
         out += ["", "## FAQ", ""]
@@ -288,7 +316,9 @@ def build():
                             '  <script src="/assets/js/i18n/%s.js"></script>\n  <script src="/assets/js/main.js"></script>' % tr_code, 1)
         write(path.strip("/") + "/index.html", page)
 
-    # 4) scheda del sito per gli assistenti AI
+    # 4) pagine delle singole case (italiano e inglese), sitemap e scheda del sito per gli assistenti AI
+    house_urls = houses.build_houses(ROOT, rendered, write) if not problems else []
+    write("sitemap.xml", sitemap(house_urls))
     write("llms.txt", llms_txt(rendered))
 
     if problems:

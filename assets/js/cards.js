@@ -42,9 +42,10 @@
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
-  // ctx: { T, waLink(text), bookingUrl(base), descOf(p) }
+  // ctx: { T, waLink(text), bookingUrl(base), descOf(p), houseUrl(p) facoltativo: link alla pagina della casa }
   function make(ctx) {
     var T = ctx.T, waLink = ctx.waLink, bookingUrl = ctx.bookingUrl, descOf = ctx.descOf;
+    var houseUrl = ctx.houseUrl || function () { return null; };
     function card(p, i) {
       var facts = [];
       if (p.guests) facts.push(p.guests + " " + (p.guests === 1 ? T.guest : T.guests));
@@ -69,7 +70,7 @@
         "</div>" +
         '<div class="card-body">' +
           '<p class="card-area">' + T.area[p.area] + "</p>" +
-          "<h3>" + esc(p.name) + "</h3>" +
+          "<h3>" + (houseUrl(p) ? '<a href="' + esc(houseUrl(p)) + '">' + esc(p.name) + "</a>" : esc(p.name)) + "</h3>" +
           (facts.length ? '<p class="facts">' + facts.join(" · ") + "</p>" : "") +
           "<p>" + esc(descOf(p)) + "</p>" +
           (tags ? '<div class="tags">' + tags + "</div>" : "") +
