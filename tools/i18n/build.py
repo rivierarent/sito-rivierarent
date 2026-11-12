@@ -187,6 +187,33 @@ def ui_label(code, tr):
     return tr["ui"]["langLabel"] if tr else "Lingua"
 
 
+def archive_houses(house_urls):
+    """Case non piu' sul sito (archiviate o tolte): cancella le loro pagine e ne reindirizza gli indirizzi
+    alla sezione case vacanza della home (vercel.json), cosi' chi arriva da Google non trova un errore."""
+    import shutil
+    js = "global.window={};require(%r);process.stdout.write(JSON.stringify((window.RR_PROPERTIES_ALL||[]).filter(function(p){return p.archived}).map(function(p){return p.id})))" % os.path.join(ROOT, "assets/js/properties.js")
+    archived = set(json.loads(subprocess.run(["node", "-e", js], capture_output=True, text=True, check=True).stdout))
+    gone = set(archived)
+    for lang, pattern in houses.PATHS.items():
+        folder = os.path.join(ROOT, pattern.split("%s")[0].strip("/"))
+        for pid in (os.listdir(folder) if os.path.isdir(folder) else []):
+            if (pattern % pid) not in house_urls and os.path.isfile(os.path.join(folder, pid, "index.html")):
+                shutil.rmtree(os.path.join(folder, pid))
+                gone.add(pid)
+                print("tolta la pagina %s" % (pattern % pid))
+    vfile = os.path.join(ROOT, "vercel.json")
+    conf = json.load(open(vfile, encoding="utf-8")) if os.path.exists(vfile) else {}
+    old = [r for r in conf.get("redirects", []) if not r.get("source", "").startswith(("/case/", "/en/homes/"))]
+    new = []
+    for pid in sorted(gone):
+        for lang, pattern in houses.PATHS.items():
+            src = pattern % pid
+            new.append({"source": src.rstrip("/") + "{/}?", "destination": houses.HOME[lang] + "#case", "permanent": False})
+    conf["redirects"] = old + new
+    if conf["redirects"] or os.path.exists(vfile):
+        write("vercel.json", json.dumps(conf, ensure_ascii=False, indent=2) + "\n")
+
+
 def sitemap(house_urls):
     today = __import__("datetime").date.today().isoformat()
     def url(loc, alts=None):
@@ -318,6 +345,8 @@ def build():
 
     # 4) pagine delle singole case (italiano e inglese), sitemap e scheda del sito per gli assistenti AI
     house_urls = houses.build_houses(ROOT, rendered, write) if not problems else []
+    if house_urls:
+        archive_houses(house_urls)
     write("sitemap.xml", sitemap(house_urls))
     write("llms.txt", llms_txt(rendered))
 

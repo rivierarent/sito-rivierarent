@@ -10,6 +10,8 @@
  *  fromPrice: prezzo "a partire da" a notte, pulizie e biancheria incluse (solo il numero; vuoto = non mostrato).
  *  Le prime 15 case e Al Boschetto, La Vela, Riders Mansion hanno i prezzi reali di Kross (ottobre 2026); le altre hanno il prezzo vuoto (non mostrato) finché l'ufficio non lo inserisce.
  *  desc { it, en }
+ *  archived: true = casa archiviata: resta qui con tutti i dati ma non compare sul sito
+ *  (per rimetterla basta cancellare la riga "archived: true" e rilanciare la build).
  *
  * NB: i dati sotto provengono da schede pubbliche. Verificare posti letto,
  * CIN e foto prima della pubblicazione.
@@ -146,6 +148,7 @@ window.RR_PROPERTIES = [
     }
   },
   {
+    archived: true, // archiviata il 12/11/2026: non compare sul sito (togliere la riga per rimetterla)
     id: "villa-orizzonte", name: "Villa L'Orizzonte", area: "hills", type: "villa",
     guests: 6, bedrooms: 3, bathrooms: 2, pool: false, seaView: false, bike: false,
     features: ["wifi"],
@@ -347,6 +350,7 @@ window.RR_PROPERTIES = [
     }
   },
   {
+    archived: true, // archiviata il 12/11/2026: non compare sul sito (togliere la riga per rimetterla)
     id: "rustico-del-borgo", name: "Rustico del Borgo", area: "hills", type: "house",
     guests: 3, bedrooms: 2, bathrooms: 2, pool: false, seaView: false, bike: false,
     features: ["wifi", "terrace"],
@@ -357,6 +361,7 @@ window.RR_PROPERTIES = [
     }
   },
   {
+    archived: true, // archiviata il 12/11/2026: non compare sul sito (togliere la riga per rimetterla)
     id: "acquamarina", name: "Acquamarina", area: "finale", type: "apartment",
     guests: 4, bedrooms: 2, bathrooms: 1, pool: false, seaView: false, bike: false,
     features: ["wifi", "ac", "dishwasher", "washer"],
@@ -407,3 +412,7 @@ window.RR_PROPERTIES = [
     }
   }
 ];
+
+// Le case archiviate restano in RR_PROPERTIES_ALL ma spariscono dal sito
+window.RR_PROPERTIES_ALL = window.RR_PROPERTIES;
+window.RR_PROPERTIES = window.RR_PROPERTIES.filter(function (p) { return !p.archived; });

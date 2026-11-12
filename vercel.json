@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/case/acquamarina{/}?",
+      "destination": "/#case",
+      "permanent": false
+    },
+    {
+      "source": "/en/homes/acquamarina{/}?",
+      "destination": "/en/#case",
+      "permanent": false
+    },
+    {
+      "source": "/case/rustico-del-borgo{/}?",
+      "destination": "/#case",
+      "permanent": false
+    },
+    {
+      "source": "/en/homes/rustico-del-borgo{/}?",
+      "destination": "/en/#case",
+      "permanent": false
+    },
+    {
+      "source": "/case/villa-orizzonte{/}?",
+      "destination": "/#case",
+      "permanent": false
+    },
+    {
+      "source": "/en/homes/villa-orizzonte{/}?",
+      "destination": "/en/#case",
+      "permanent": false
+    }
+  ]
+}
